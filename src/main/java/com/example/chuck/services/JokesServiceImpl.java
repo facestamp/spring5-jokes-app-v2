@@ -1,21 +1,22 @@
 package com.example.chuck.services;
 
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import guru.springframework.norris.chuck.ChuckNorrisQuotes;
 
 @Service
 public class JokesServiceImpl implements JokesService {
 
+    private final ChuckNorrisQuotes chuckNorrisQuotes;
+
+    public JokesServiceImpl() {
+        this.chuckNorrisQuotes = new ChuckNorrisQuotes();
+    }
+
     @Override
-    public String getQuote(Model model) {
+    public String getQuote() {
 
-        ChuckNorrisQuotes chuckNorrisQuotes = new ChuckNorrisQuotes();
-
-        model.addAttribute("joke", chuckNorrisQuotes.getRandomQuote());
-
-        return "index";
+        return chuckNorrisQuotes.getRandomQuote();
 
     }
 
